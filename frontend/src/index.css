@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+body {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  color: rgba(34, 34, 96, 0.6);
+}
+.custom-bg {
+  background: rgba(252, 246, 249, 0.78);
+  backdrop-filter: blur(4.5px);
+}
+
+.app {
+  /* background: url("./images/bg.png"); */
+  /* background: #e5a9ad; */
+  /* background: #e9a69b; */
+  background: #e3c3bd;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* User Form Editing  */
+.login-form {
+  width: 320px;
+  padding: 3rem 1rem;
+  border-radius: 15px;
+  box-shadow: 0px 7px 29px 0px rgba(100, 100, 111, 0.2);
+  text-align: center;
+}
+.login-input {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+}
+.login-input input {
+  width: 100%;
+  background: transparent;
+  outline: none;
+}
+.login-btn {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: 0.5rem;
+  padding: 0.5rem 2rem;
+}
+
+.user-img {
+  border-radius: 50%;
+  box-shadow: 0px 1px 17px rgba(0, 0, 0, 0.4);
+}
+
+/* Navbar Styling */
+.active {
+  color: #09095c;
+}
+.active:before {
+  content: " ";
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  background: #09095c;
+  width: 4px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.nav-activated {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  border: none;
+  border-radius: 0;
+  transition: 0.4s all ease-in-out;
+}
+
+.red-1 {
+  background: #ff9c94;
+  border-color: #f10000;
+  /* background: #f7b7b2; */
+  /* border-color: #ff0000; */
+}
+.green-1 {
+  background: #d7f4c5;
+  border-color: #42ad00;
+}
+
+/* Income Expense Form Styling  */
+.form-1 input,
+select,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  resize: none;
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.2);
+  color: #222260;
+}
+.form-1 input select textarea::placeholder {
+  color: rgba(34, 34, 96, 0.7);
+}
+.selects {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+@media screen and (max-width: 800px) {
+  .app {
+    background: rgba(252, 246, 249, 0.78);
+    backdrop-filter: blur(4.5px);
+  }
+  .obstyle1 {
+    display: none;
+  }
+}
+
+/* Update profile Styling */
+.form input {
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  resize: none;
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.2);
+  color: #222260;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
