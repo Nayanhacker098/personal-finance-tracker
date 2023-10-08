@@ -7,14 +7,11 @@ import {
   getExpense,
   deleteExpense,
 } from "../controller/IncomeExpense.js";
-import { register, login, getuser } from "../controller/UserAuth.js";
-import { auth } from "../models/userSchema.js";
+import { register, login } from "../controller/UserAuth.js";
+// import { auth } from "../models/userSchema.js";
 
 export const userRoute = express.Router();
-userRoute
-  .post("/register", register)
-  .post("/login", login)
-  .get("/", auth, getuser);
+userRoute.post("/register", register).post("/login", login);
 
 export const incomeRoutes = express.Router();
 incomeRoutes

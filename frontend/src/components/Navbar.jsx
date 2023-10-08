@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import userImg from "../images/user-icon.png";
+import { useGlobalContext } from "../utils/context";
 import {
   navopen,
   navclose,
@@ -40,6 +41,8 @@ const navlist = [
 const Navbar = () => {
   const [navIcon, setNavIcon] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logoutUser, setUser, setUserData } = useGlobalContext();
 
   return (
     <>
@@ -88,9 +91,17 @@ const Navbar = () => {
             })}
           </div>
         </div>
-        <div className="nav-signout">
+        <button
+          className="nav-signout"
+          onClick={() => {
+            logoutUser();
+            setUser(undefined);
+            setUserData(undefined);
+            navigate("/login");
+          }}
+        >
           <span>Signout</span>
-        </div>
+        </button>
       </nav>
     </>
   );

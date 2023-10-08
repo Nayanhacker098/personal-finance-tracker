@@ -1,5 +1,12 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import axios from "axios";
+import cookies from "js-cookie";
 
 const baseUrl = "http://localhost:5000/";
 
@@ -11,26 +18,39 @@ export const GlobalApiProvider = ({ children }) => {
   const [expense, setExpense] = useState([]);
   const [error, setError] = useState(null);
   const [recentHistory, setRecentHistory] = useState([]);
+  const [userData, setUserData] = useState(undefined);
 
   // User API Data Start Here
 
-  const getUser = async () => {
-    const response = await axios.get(`${baseUrl}user/`);
-    setUser(response.data);
-  };
+  // const getUser = async () => {
+  //   const response = await axios.get(`${baseUrl}user/`);
+  //   setUser(response.data);
+  // };
 
   const registerUser = async (users) => {
-    await axios.post(`${baseUrl}user/register`, users).catch((err) => {
-      setError(err.response.data.message);
-    });
-    getUser();
+    await axios
+      .post(`${baseUrl}user/register`, users)
+      .then((res) => {
+        cookies.set("userdata", JSON.stringify(res.data), { expires: 1 });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
   };
 
   const loginUser = async (users) => {
-    await axios.post(`${baseUrl}user/login`, users).catch((err) => {
-      setError(err.response.data.message);
-    });
-    await getUser();
+    await axios
+      .post(`${baseUrl}user/login`, users)
+      .then((res) => {
+        cookies.set("userdata", JSON.stringify(res.data), { expires: 1 });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  };
+
+  const logoutUser = () => {
+    cookies.remove("userdata");
   };
 
   // Income API Data Start Here
@@ -89,12 +109,28 @@ export const GlobalApiProvider = ({ children }) => {
   useEffect(() => {
     getRecentHistory();
   }, [incomes, expense]);
+
+  useEffect(() => {
+    setUser(cookies.get("userdata"));
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setUserData(JSON.parse(user));
+    }
+  }, [user]);
+  console.log(userData, user);
+
   return (
     <GlobalContext.Provider
       value={{
         user,
+        setUser,
         registerUser,
         loginUser,
+        userData,
+        setUserData,
+        logoutUser,
         addIncome,
         incomes,
         deleteIncome,

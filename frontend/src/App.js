@@ -1,5 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import {
   Navbar,
   Dashboard,
@@ -14,17 +14,38 @@ import { useGlobalContext } from "./utils/context";
 import { useEffect } from "react";
 
 function App() {
-  const { user } = useGlobalContext();
+  const { userData } = useGlobalContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (!user) {
-      navigate("/login");
+    if (!userData) {
+      if (["/login", "/register"].includes(location.pathname)) {
+        navigate(location.pathname);
+      }
+    } else {
+      if (
+        userData &&
+        ["/incomes", "/expenses", "/view-transaction"].includes(
+          location.pathname
+        )
+      ) {
+        navigate(location.pathname);
+      } else {
+        navigate("/");
+      }
     }
-  }, [user]);
+  }, [userData, navigate]);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     window.location.reload();
+  //   }, 200);
+  // }, []);
+
   return (
     <>
-      {!user ? (
+      {!userData ? (
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

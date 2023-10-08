@@ -1,15 +1,17 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../utils/context";
 
 const Register = () => {
-  const { registerUser } = useGlobalContext();
+  const navigate = useNavigate();
+  const { registerUser, userData } = useGlobalContext();
   const [userDetail, setUserDetail] = useState({
     fullname: "",
     email: "",
     password: "",
     phone: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const { fullname, email, password, phone } = userDetail;
   const handleInput = (name) => (e) => {
@@ -25,7 +27,22 @@ const Register = () => {
       password: "",
       phone: "",
     });
+    setIsLoading(true);
   };
+
+  useEffect(() => {
+    if (userData) {
+      navigate("/");
+    }
+  }, [userData, navigate]);
+
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    }
+  }, [isLoading]);
   return (
     <div className="register w-full h-screen bg-white flex flex-col items-center justify-center">
       <form className="login-form text-black">
