@@ -26,6 +26,18 @@ const UserSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+  income: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Incomes",
+    },
+  ],
+  expense: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Expenses",
+    },
+  ],
 });
 
 UserSchema.methods.generateAuthToken = function () {

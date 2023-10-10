@@ -3,13 +3,14 @@ import DatePicker from "react-datepicker";
 import { useGlobalContext } from "../utils/context";
 
 const Form = ({ btnClass, options, btnTitle }) => {
-  const { addIncome, addExpense } = useGlobalContext();
+  const { addIncome, addExpense, userData } = useGlobalContext();
   const [inputeState, setInputState] = useState({
     title: "",
     amount: "",
     date: "",
     category: "",
     description: "",
+    user: userData.data._id,
   });
 
   const { title, amount, date, category, description } = inputeState;

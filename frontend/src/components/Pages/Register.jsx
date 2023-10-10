@@ -21,13 +21,13 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser(userDetail);
+    setIsLoading(true);
     setUserDetail({
       fullname: "",
       email: "",
       password: "",
       phone: "",
     });
-    setIsLoading(true);
   };
 
   useEffect(() => {

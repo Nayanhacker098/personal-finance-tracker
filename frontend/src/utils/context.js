@@ -73,7 +73,9 @@ export const GlobalApiProvider = ({ children }) => {
     getIncome();
   };
 
-  const totalIncome = incomes.reduce((a, b) => a + b.amount, 0);
+  const totalIncome = incomes
+    .filter((t) => t?.user === userData?.data?._id)
+    .reduce((a, b) => a + b.amount, 0);
 
   // Expenses API data Start here
   const getExpense = async () => {
@@ -95,7 +97,9 @@ export const GlobalApiProvider = ({ children }) => {
     getExpense();
   };
 
-  const totalExpense = expense.reduce((a, b) => a + b.amount, 0);
+  const totalExpense = expense
+    .filter((t) => t?.user === userData?.data?._id)
+    .reduce((a, b) => a + b.amount, 0);
 
   useEffect(() => {
     getIncome();
@@ -119,7 +123,6 @@ export const GlobalApiProvider = ({ children }) => {
       setUserData(JSON.parse(user));
     }
   }, [user]);
-  console.log(userData, user);
 
   return (
     <GlobalContext.Provider

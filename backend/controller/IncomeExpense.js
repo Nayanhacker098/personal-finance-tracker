@@ -3,8 +3,15 @@ import ExpenseData from "../models/expenseSchema.js";
 
 // Income API
 export const addIncome = async (req, res) => {
-  const { title, amount, date, category, description } = req.body;
-  const income = IncomeData({ title, amount, date, category, description });
+  const { title, amount, date, category, description, user } = req.body;
+  const income = IncomeData({
+    title,
+    amount,
+    date,
+    category,
+    description,
+    user,
+  });
 
   try {
     await income.save();
@@ -40,8 +47,15 @@ export const deleteIncome = async (req, res) => {
 
 // Expense API
 export const addExpense = async (req, res) => {
-  const { title, amount, date, category, description } = req.body;
-  const expense = ExpenseData({ title, amount, date, category, description });
+  const { title, amount, date, category, description, user } = req.body;
+  const expense = ExpenseData({
+    title,
+    amount,
+    date,
+    category,
+    description,
+    user,
+  });
 
   try {
     await expense.save();

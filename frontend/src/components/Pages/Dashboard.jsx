@@ -1,19 +1,18 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { notification } from "../../utils/icons";
 import TransctionList from "../TransctionList";
 import ChartDiv from "../Chart";
 import { useGlobalContext } from "../../utils/context";
 
 const Dashboard = () => {
-  const { totalIncome, totalExpense, recentHistory, user } = useGlobalContext();
-  console.log(recentHistory);
+  const { totalIncome, totalExpense, recentHistory, userData } =
+    useGlobalContext();
 
   return (
     <>
       <div className="flex items-center justify-between lg:mx-6 text-[#09095c]">
         <p className="text-[1.2rem]">
-          Welcome Back <b>Nayan</b>,
+          Welcome Back <b>{userData?.data?.fullname.split(" ")[0]}</b>,
         </p>
         <span className="lg:static lg:text-[1.5rem] text-[1.7rem]  absolute -top-12 right-[20px] not">
           {notification}

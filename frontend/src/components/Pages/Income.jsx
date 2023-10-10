@@ -38,7 +38,6 @@ const optionArr = [
 
 const Income = () => {
   const { incomes, totalIncome } = useGlobalContext();
-  console.log(totalIncome);
   return (
     <>
       <div className="income-heading w-full bg-[#f5f5f5] p-2 text-center rounded-[8px]">

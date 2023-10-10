@@ -42,7 +42,7 @@ const Navbar = () => {
   const [navIcon, setNavIcon] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { logoutUser, setUser, setUserData } = useGlobalContext();
+  const { logoutUser, setUser, setUserData, userData } = useGlobalContext();
 
   return (
     <>
@@ -64,7 +64,7 @@ const Navbar = () => {
             <div className="user-wrapper flex gap-4 items-center ">
               <img src={userImg} alt="user-img" className="w-16 user-img" />
               <div className="user-info text-[#09095c]">
-                <h1 className="font-semibold">Nayan Bhalerao</h1>
+                <h1 className="font-semibold">{userData?.data?.fullname}</h1>
                 <p className="text-center">Add bank a/c</p>
               </div>
             </div>

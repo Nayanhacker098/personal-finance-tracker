@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import { UserData, validate } from "../models/userSchema.js";
-import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
@@ -24,7 +23,7 @@ export const register = async (req, res) => {
     res
       .status(201)
       .setHeader("Token", token)
-      .send({ message: "User created successfully", User: newUser });
+      .send({ message: "User created successfully", data: newUser });
   } catch (error) {
     return res.status(500).send({ message: "Internal Server Error" });
   }
