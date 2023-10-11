@@ -1,12 +1,8 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  useCallback,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import cookies from "js-cookie";
+import toast from "react-hot-toast";
+import { trash } from "./icons";
 
 const baseUrl = "http://localhost:5000/";
 
@@ -22,19 +18,16 @@ export const GlobalApiProvider = ({ children }) => {
 
   // User API Data Start Here
 
-  // const getUser = async () => {
-  //   const response = await axios.get(`${baseUrl}user/`);
-  //   setUser(response.data);
-  // };
-
   const registerUser = async (users) => {
     await axios
       .post(`${baseUrl}user/register`, users)
       .then((res) => {
         cookies.set("userdata", JSON.stringify(res.data), { expires: 1 });
+        toast.success(res.data.message);
       })
       .catch((err) => {
         setError(err.response.data.message);
+        toast.error(err.response.data.message);
       });
   };
 
@@ -43,14 +36,17 @@ export const GlobalApiProvider = ({ children }) => {
       .post(`${baseUrl}user/login`, users)
       .then((res) => {
         cookies.set("userdata", JSON.stringify(res.data), { expires: 1 });
+        toast.success(res.data.message);
       })
       .catch((err) => {
         setError(err.response.data.message);
+        toast.error(err.response.data.message);
       });
   };
 
   const logoutUser = () => {
     cookies.remove("userdata");
+    toast.success("Logout Successfully !");
   };
 
   // Income API Data Start Here
@@ -60,16 +56,28 @@ export const GlobalApiProvider = ({ children }) => {
   };
 
   const addIncome = async (income) => {
-    await axios.post(`${baseUrl}income`, income).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .post(`${baseUrl}income`, income)
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getIncome();
   };
 
   const deleteIncome = async (id) => {
-    await axios.delete(`${baseUrl}income/${id}`).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .delete(`${baseUrl}income/${id}`)
+      .then((res) => {
+        toast(res.data.message, {
+          icon: <span className="text-red-500">{trash}</span>,
+        });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getIncome();
   };
 
@@ -84,16 +92,28 @@ export const GlobalApiProvider = ({ children }) => {
   };
 
   const addExpense = async (expense) => {
-    await axios.post(`${baseUrl}expense`, expense).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .post(`${baseUrl}expense`, expense)
+      .then((res) => {
+        toast.success(res.data.message);
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getExpense();
   };
 
   const deleteExpense = async (id) => {
-    await axios.delete(`${baseUrl}expense/${id}`).catch((err) => {
-      setError(err.response.data.message);
-    });
+    await axios
+      .delete(`${baseUrl}expense/${id}`)
+      .then((res) => {
+        toast(res.data.message, {
+          icon: <span className="text-red-500">{trash}</span>,
+        });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
     getExpense();
   };
 

@@ -43,7 +43,7 @@ export const login = async (req, res) => {
     const token = user.generateAuthToken();
     user.token = token;
 
-    res.status(200).send({ message: "logged in successfully", data: user });
+    res.status(200).send({ message: "Logged in successfully", data: user });
   } catch (error) {
     return res.status(500).send({ message: "Internal Server Error" });
   }

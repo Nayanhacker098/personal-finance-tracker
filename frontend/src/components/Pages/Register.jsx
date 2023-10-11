@@ -44,8 +44,8 @@ const Register = () => {
     }
   }, [isLoading]);
   return (
-    <div className="register w-full h-screen bg-white flex flex-col items-center justify-center">
-      <form className="login-form text-black">
+    <div className="register w-full h-screen  flex flex-col items-center justify-center">
+      <form className="login-form custom-bg lg:border-[4px] lg:border-white rounded-[8px]  text-black">
         <h2 className="text-2xl  font-semibold">Register</h2>
         <div className="login-input">
           <input

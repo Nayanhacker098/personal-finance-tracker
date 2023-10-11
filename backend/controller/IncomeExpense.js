@@ -15,7 +15,7 @@ export const addIncome = async (req, res) => {
 
   try {
     await income.save();
-    res.status(200).json({ message: "Income Addedd" });
+    res.status(200).json({ message: "Income Transaction Added " });
   } catch (err) {
     console.log(err);
   }
@@ -37,7 +37,7 @@ export const deleteIncome = async (req, res) => {
   IncomeData.findByIdAndDelete(id)
     .then(() => {
       // console.log(income);
-      res.status(200).json({ message: "Income Deleted" });
+      res.status(200).json({ message: "Income Transaction Deleted" });
     })
     .catch((err) => {
       console.log(err);
@@ -59,7 +59,7 @@ export const addExpense = async (req, res) => {
 
   try {
     await expense.save();
-    res.status(200).json({ message: "Expense Added" });
+    res.status(200).json({ message: "Expense Transaction Added" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Server error !" });
@@ -80,7 +80,7 @@ export const deleteExpense = async (req, res) => {
   const { id } = req.params;
   ExpenseData.findByIdAndDelete(id)
     .then(() => {
-      res.status(200).json({ message: "Expense Deleted" });
+      res.status(200).json({ message: "Expense Transaction Deleted" });
     })
     .catch((err) => {
       console.log(err);

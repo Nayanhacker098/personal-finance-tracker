@@ -9,6 +9,7 @@ import {
   transactions,
   trend,
   expenses,
+  logout,
 } from "../utils/icons";
 
 const navlist = [
@@ -92,7 +93,7 @@ const Navbar = () => {
           </div>
         </div>
         <button
-          className="nav-signout"
+          className="nav-signout text-[#09095c] font-semibold"
           onClick={() => {
             logoutUser();
             setUser(undefined);
@@ -100,7 +101,7 @@ const Navbar = () => {
             navigate("/login");
           }}
         >
-          <span>Signout</span>
+          <span>{logout} Signout</span>
         </button>
       </nav>
     </>

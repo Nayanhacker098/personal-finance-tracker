@@ -12,6 +12,7 @@ import {
 } from "./components";
 import { useGlobalContext } from "./utils/context";
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { userData } = useGlobalContext();
@@ -37,21 +38,16 @@ function App() {
     }
   }, [userData, navigate]);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     window.location.reload();
-  //   }, 200);
-  // }, []);
-
   return (
-    <>
+    <div className="app">
+      <Toaster />
       {!userData ? (
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
       ) : (
-        <div className="app w-full h-full lg:h-screen lg:p-8 flex lg:flex-row lg:gap-8">
+        <div className=" w-full h-full lg:h-screen lg:p-8 flex lg:flex-row lg:gap-8">
           <div className="col-1">
             <Navbar />
           </div>
@@ -66,7 +62,7 @@ function App() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
