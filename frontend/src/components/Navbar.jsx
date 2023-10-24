@@ -61,15 +61,15 @@ const Navbar = () => {
         }`}
       >
         <div className="user-list-wrapper">
-          <Link to={"/update-profile"}>
-            <div className="user-wrapper flex gap-4 items-center ">
-              <img src={userImg} alt="user-img" className="w-16 user-img" />
-              <div className="user-info text-[#09095c]">
-                <h1 className="font-semibold">{userData?.data?.fullname}</h1>
-                <p className="text-center">Add bank a/c</p>
-              </div>
+          {/* <Link to={"/update-profile"}> */}
+          <div className="user-wrapper flex gap-4 items-center ">
+            <img src={userImg} alt="user-img" className="w-16 user-img" />
+            <div className="user-info text-[#09095c]">
+              <h1 className="font-semibold">{userData?.data?.fullname}</h1>
+              <p className="text-center">Add bank a/c</p>
             </div>
-          </Link>
+          </div>
+          {/* </Link> */}
           <div className="nav-list flex flex-col gap-6 mt-12 py-4 pl-8 pr-4">
             {navlist.map((item) => {
               return (
