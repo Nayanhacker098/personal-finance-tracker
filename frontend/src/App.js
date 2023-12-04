@@ -21,6 +21,7 @@ function App() {
 
   useEffect(() => {
     if (!userData) {
+      navigate("/login");
       if (["/login", "/register"].includes(location.pathname)) {
         navigate(location.pathname);
       }
