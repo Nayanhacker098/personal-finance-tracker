@@ -21,7 +21,14 @@ const Dashboard = () => {
       <div className="dashboard grid lg:grid-cols-2 grid-cols-1">
         <div className="col-wrapper p-4">
           {/* <div className="col-1  p-4"> */}
-          <ChartDiv />
+          {totalIncome + totalExpense === 0 ? (
+            <div className="col-1 p-4 flex items-center justify-center w-full h-[350px] text-[#09095c]">
+              Add Data To Generate Pie Chart
+            </div>
+          ) : (
+            <ChartDiv />
+          )}
+          {/* <ChartDiv /> */}
           {/* </div> */}
           <div className="col-2  flex flex-wrap  text-center">
             <div className="box bg-white rounded-[10px] p-4 m-2 grow shrink-0 basis-[200px]">
